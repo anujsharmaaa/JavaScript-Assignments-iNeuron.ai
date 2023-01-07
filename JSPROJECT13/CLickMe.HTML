@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Javascript  13 project </title>
+    <style>
+        body{
+        background-color: #01011f;
+        display: flex;
+        justify-content: center;
+        height: 100vh;
+        align-items: center;
+        }
+        
+        .container{
+            background-color: #fff;
+            padding: 100px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        button{
+            margin-bottom: 20px;
+            width: 200px;
+            height: 50px;
+            border-radius: 10px;
+            background-color: rgb(94, 12, 126);
+            cursor: pointer;
+            color: #fff;
+            border-color: transparent;
+            font-size: large;
+            box-shadow: 0;
+        }
+
+        button:hover{
+            background-color: rgb(202, 28, 124);
+        }
+
+        button:active{
+            transform: translateY(5px);
+        }
+
+        span{
+            color:#ff2424;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button onclick = "increase()" > Click Me </button>
+         <h4>You Clicked The Button <span id="counter"> 0 </span> Times </h4>
+    </div>
+</body>
+<script>
+const button = document.querySelector("button");
+const counter =  document.querySelector("#counter");
+let count =  0;
+
+function increase(){
+    count += 1;
+    counter.innerText = count;
+}
+</script>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Js project 12 : Calculator </title>
+
+    <style>
+        body{
+            background-color: rgb(134, 103, 206);
+        }
+
+
+        .container{
+            background: #040435;
+            background-size: cover;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+
+        .textview{
+            /* display: inline-block; */
+            margin: 2px;
+            width: 198px;
+            height: 29px;
+            font-size: 20px;
+            font-weight: bold;
+            background-color: rgba(0, 255, 255, 0.555);
+            border: none;
+        }
+
+        .equalButton{
+        cursor: pointer;
+        /* display: inline-block; */
+        margin: 2px;
+        width: 42px;
+        height: 91px;
+        outline: none;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 10px;
+        }
+
+        .button{
+            cursor: pointer;
+            /* display: inline-block; */
+            margin: 2px;
+            width: 42px;
+            height: 42px;
+            outline: none;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+
+        .button:active,
+        .allclearButton:active,
+        .equalButton:active{
+            background-color:rgba(241, 22, 241, 0.911);
+            box-shadow: 0 3px #666866;
+            transform: translateY(4px);
+        }
+
+        .button:hover,
+        .equalButton:hover {
+            background-color: #cc1fbe;
+            border-top: 3px solid #aa0f0f;
+            border-right: 3px solid #0f5faa;
+            border-bottom: 3px solid #0faa95;
+            border-left: 3px solid #120faa;
+        }
+
+        .allclearButton{
+            border-radius: 10px;
+            color: #fff;
+            margin:  2px;
+            width: 42px;
+            height: 42px;
+            text-shadow: -1px -1px 0px #370058;
+            cursor: pointer;
+            background-color: red;
+            border-top: 2px solid rgb(202, 34, 224);
+            border-top: 2px solid rgb(107, 34, 224);
+            border-top: 2px solid rgb(34, 202, 224);
+            border-top: 2px solid rgb(34, 53, 224);
+            box-shadow:  0px 0px 2px black ,  inset 0px -20px 1px  red ;
+            outline: none;
+        }
+
+    
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form name="form">
+            <input class="textview" name="textview">
+        </form>
+        <table>
+            <tr>
+                <td><input  class = "allclearButton" type="button" value="AC" onclick="clean()"></td>
+                <td><input class="button" type="button" value="C" onclick = "back()" ></td>
+                <td><input  class="button" type="button" value="/" onclick="insert('/')" ></td>
+                <td><input class=" button" type="button" value = "x" onclick = "insert('*')"></td>
+            </tr>
+            <tr>
+                <td><input  class="button" type="button" value="7" onclick="insert(7)"></td>
+                <td><input  class = "button" type="button" value="8" onclick="insert(8)" ></td>
+                <td><input class="button"  type="button" value="9" onclick="insert(9)"></td>
+                <td><input class="button" type="button" value="-" onclick="insert('-')"></td>
+            </tr>
+            <tr>
+                <td><input class= "button" type="button" value="4" onclick="insert(4)"></td>
+                <td><input class="button" type="button" value="5"  onclick="insert(5)"  ></td>
+                <td><input class="
+                    button" type="button" value="6"onclick = "insert(6)" ></td>
+                    <td><input class="button" type="button" value="+" onclick="insert('+')"></td>
+            </tr>
+            <tr>
+                <td><input  class="button" type="button" value="1" onclick="insert(1)"></td>
+                <td><input class="button" type="button" value="2" onclick="insert(2)" ></td>
+                 <td><input  class="button" type="button"  value="3" onclick="
+                    (3)"></td>
+                    <td rowspan="2" ><input class="equalButton" type="button" value = "=" onclick= equals()></td>
+            </tr>
+            <tr>
+                <td><input class="button" type="button" value="%" onclick="insert('%')"></td>
+                <td><input  class = "button" type="button" value="0" onclick="insert('0')" ></td>
+                <td><input class="button" type="button" value = "."  onclick="insert('.')"></td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        let expression = "";
+        
+        function insert(num){
+            expression +=num;
+            const textview = document.querySelector(".textview");
+            textview.value = expression;
+    
+        }
+
+        function equals(){
+            const textview = document.querySelector(".textview");
+            try{
+                textview.value = eval(expression);
+            }
+            catch(err){
+                textview.value = "Syntax error";
+            }
+            expression = "";
+        }
+
+        function clean(){
+            expression = "";
+            const textview = document.querySelector(".textview");
+            textview.value = expression;
+        }
+
+        function back(){
+            expression =  expression.slice(0, -1);
+            const textview = document.querySelector(".textview");
+            textview.value = expression;
+        }
+
+    </script>
+</body>
+</html>

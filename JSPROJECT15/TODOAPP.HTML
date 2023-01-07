@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Todo App </title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        *{
+            padding: 0 ;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            height: 100%;
+            /* background-color:  rgb(49, 185, 226); */
+            background-color:  rgb(26, 0, 51);
+        }
+
+        h1{
+            font-size: 3rem;
+            font-weight: 50;
+            margin: 1rem 0 3rem;
+            text-align: center;
+            color: rgb(184, 184, 184);
+            font-family: cursive;
+        }
+
+        .heading{
+            font-weight: 900;
+            color: rgb(1, 39, 51);
+        }
+
+        .input_div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .input_div .input{
+            padding: 0.5rem 1rem;
+            height: 50px;
+            outline: none;
+            border: none;
+            background-color: aliceblue;
+            width: 450px;
+            font-size: 1.15rem;
+            margin: 0.25rem;
+            border-radius: 25px;
+        }
+
+        .addButton{
+            height: 50px;
+            width: 50px;
+            border-radius: 25px;
+            outline: none;
+            border: none;
+            background-color: #ffffff;
+            color: whitesmoke;
+            margin: 0.25rem;
+            background-color: rgb(0, 195, 255);
+            cursor: pointer;
+        }
+
+        .addButton:hover{
+            opacity: 0.7;
+        }
+
+        .container{
+            color: 5px solid red;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+       .item{
+           padding: 0.5rem;
+           margin-bottom: 1.5rem;
+           border-bottom: 4px solid #ffffff;
+           display: flex;
+           justify-content: space-between;
+       }
+
+       .item_input{
+           background: none;
+           outline: none;
+           color: #ffffff;
+           border: none;
+           width: 350px;
+           font-size: 1.4rem;
+       }
+
+       .editButton{
+           font-size: 1.2rem;
+           margin: 0  0.5rem;
+           font-family: Georgia, 'Times New Roman', Times, serif;
+           background:none;
+           outline: none;
+           color: rgb(0, 17, 255);
+           border: none;
+           cursor: pointer;
+           font-weight: 
+           bold;
+       }
+
+       .deleteButton{
+           font-size: 1.2rem;
+           margin: 0 0.5rem;
+           font-family: 'Times New Roman', Times, serif;
+           background: none;
+           outline: none;
+           color:  red;
+           border: none;
+           cursor: pointer;
+           font-weight: bold;
+       }
+
+    </style>
+</head>
+<body>
+    <h1>
+        <span class="heading">TODO</span>App
+    </h1>
+    <div class="input_div">
+        <input type="text" class="input" placeholder="Add your note...">
+        <button class="addButton">
+            <svg class="svg-inline--fa fa-plus fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path></svg><i class="fas-fa-plus"></i></button>
+    </div>
+
+    <div class="container">
+        <!-- <div class="item">
+            <div class="item_input">Hello World</div>
+            <button class="editButton">EDIT</button>
+            <button class="deleteButton">DELETE</button>
+        </div> -->
+    </div>
+
+</body>
+<script>
+const input = document.querySelector(".input");
+const add = document.querySelector(".addButton");
+const  container = document.querySelector(".container");
+
+function createTodo() {
+    if(input.value !== ""){
+        const item = document.createElement("div");
+        item.classList.add("item");
+        container.appendChild(item);
+
+        const item_input = document.createElement ("div");
+        item_input.classList.add("item_input");
+        item_input.innerText = input.value;
+
+        const  buttons = document.createElement("div");
+
+        const editButton = document.createElement("button");
+        editButton.innerText = "EDIT";
+        editButton.classList.add("editButton")
+        editButton.setAttribute("onclick", "editTodo()");
+
+        const deleteButton = document.createElement("button");
+        deleteButton.innerText = "DELETE";
+        deleteButton.classList.add("deleteButton")
+        deleteButton.setAttribute("onclick", "deleteTodo()")
+
+        buttons.appendChild(editButton);
+        buttons.appendChild(deleteButton);
+
+        item.appendChild(item_input);
+        item.appendChild(buttons);
+
+        input.value = "";
+
+
+    }
+}
+
+function deleteTodo() {
+    document.activeElement.parentElement.parentElement.remove();
+}
+
+function editTodo() {
+
+    let oldTodo = document.activeElement.parentElement.parentElement.firstChild.innerText;
+    document.activeElement.parentElement.parentElement.remove();
+    input.value = oldTodo;
+    input.focus();  
+}
+
+add.addEventListener("click", createTodo);
+
+
+</script>
+<script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"></script>
+</html>
